@@ -1,0 +1,1163 @@
+	.file	"twi_master.c"
+__SP_H__ = 0x3e
+__SP_L__ = 0x3d
+__SREG__ = 0x3f
+__RAMPZ__ = 0x3b
+__tmp_reg__ = 0
+__zero_reg__ = 1
+	.text
+.Ltext0:
+	.cfi_sections	.debug_frame
+.global	__vector_26
+	.type	__vector_26, @function
+__vector_26:
+.LFB6:
+	.file 1 "twi_master.c"
+	.loc 1 32 14 view -0
+	.cfi_startproc
+	__gcc_isr 1
+	in r18,__RAMPZ__
+	push r18
+	push r24
+.LCFI0:
+	.cfi_def_cfa_offset 3
+	.cfi_offset 24, -2
+	push r25
+.LCFI1:
+	.cfi_def_cfa_offset 4
+	.cfi_offset 25, -3
+	push r30
+.LCFI2:
+	.cfi_def_cfa_offset 5
+	.cfi_offset 30, -4
+	push r31
+.LCFI3:
+	.cfi_def_cfa_offset 6
+	.cfi_offset 31, -5
+/* prologue: Signal */
+/* frame size = 0 */
+/* stack size = 5...9 */
+.L__stack_usage = 5 + __gcc_isr.n_pushed
+	.loc 1 33 3 view .LVU1
+	.loc 1 35 3 view .LVU2
+	.loc 1 35 10 is_stmt 0 view .LVU3
+	lds r24,185
+	.loc 1 35 3 view .LVU4
+	cpi r24,lo8(56)
+	brne .+2
+	rjmp .L2
+	brsh .L3
+	cpi r24,lo8(24)
+	breq .L4
+	brsh .L5
+	cpi r24,lo8(8)
+	breq .L6
+	cpi r24,lo8(16)
+	breq .L6
+.L7:
+	.loc 1 73 7 is_stmt 1 view .LVU5
+	.loc 1 73 19 is_stmt 0 view .LVU6
+	lds r24,185
+	.loc 1 73 17 view .LVU7
+	sts twi_state,r24
+.L31:
+	.loc 1 74 7 is_stmt 1 view .LVU8
+	.loc 1 74 12 is_stmt 0 view .LVU9
+	ldi r24,lo8(4)
+	rjmp .L30
+.L5:
+	.loc 1 35 3 view .LVU10
+	cpi r24,lo8(40)
+	brne .L7
+.L4:
+	.loc 1 44 7 is_stmt 1 view .LVU11
+	.loc 1 44 23 is_stmt 0 view .LVU12
+	lds r30,twi_buf_ptr.1649
+	lds r24,twi_msg_size
+	.loc 1 44 10 view .LVU13
+	cp r30,r24
+	brsh .L12
+	.loc 1 45 9 is_stmt 1 view .LVU14
+	.loc 1 45 23 is_stmt 0 view .LVU15
+	lds r24,twi_buf
+	lds r25,twi_buf+1
+	.loc 1 45 35 view .LVU16
+	ldi r18,lo8(1)
+	add r18,r30
+	sts twi_buf_ptr.1649,r18
+	.loc 1 45 23 view .LVU17
+	add r30,r24
+	mov r31,r25
+	adc r31,__zero_reg__
+	ld r24,Z
+	.loc 1 45 14 view .LVU18
+	sts 187,r24
+	.loc 1 46 9 is_stmt 1 view .LVU19
+	rjmp .L14
+.L3:
+	.loc 1 35 3 is_stmt 0 view .LVU20
+	cpi r24,lo8(80)
+	breq .L8
+	cpi r24,lo8(88)
+	breq .L9
+	cpi r24,lo8(64)
+	brne .L7
+.L10:
+	.loc 1 57 7 is_stmt 1 view .LVU21
+	.loc 1 57 38 is_stmt 0 view .LVU22
+	lds r24,twi_msg_size
+	.loc 1 57 23 view .LVU23
+	lds r18,twi_buf_ptr.1649
+	.loc 1 57 38 view .LVU24
+	subi r24,1
+	sbc r25,r25
+	.loc 1 57 10 view .LVU25
+	cp r18,r24
+	cpc __zero_reg__,r25
+	brge .L14
+	.loc 1 58 9 is_stmt 1 view .LVU26
+	.loc 1 58 14 is_stmt 0 view .LVU27
+	ldi r24,lo8(-59)
+.L30:
+	.loc 1 74 12 view .LVU28
+	sts 188,r24
+/* epilogue start */
+	.loc 1 76 1 view .LVU29
+	pop r31
+	pop r30
+	pop r25
+	pop r24
+	pop r18
+	out __RAMPZ__,r18
+	__gcc_isr 2
+	jmp safe_reti
+.L6:
+	.loc 1 38 7 is_stmt 1 view .LVU30
+	.loc 1 38 12 is_stmt 0 view .LVU31
+	lds r24,twi_bus_addr
+	sts 187,r24
+	.loc 1 39 7 is_stmt 1 view .LVU32
+	.loc 1 39 19 is_stmt 0 view .LVU33
+	sts twi_buf_ptr.1649,__zero_reg__
+	.loc 1 40 7 is_stmt 1 view .LVU34
+.L14:
+	.loc 1 60 9 view .LVU35
+	.loc 1 60 14 is_stmt 0 view .LVU36
+	ldi r24,lo8(-123)
+	rjmp .L30
+.L12:
+	.loc 1 48 9 is_stmt 1 view .LVU37
+	.loc 1 48 12 is_stmt 0 view .LVU38
+	lds r24,twi_send_stop
+	.loc 1 48 11 view .LVU39
+	tst r24
+	brne .+2
+	rjmp .L31
+.L32:
+	.loc 1 65 7 is_stmt 1 view .LVU40
+	.loc 1 65 12 is_stmt 0 view .LVU41
+	ldi r24,lo8(-108)
+	rjmp .L30
+.L8:
+	.loc 1 55 7 is_stmt 1 view .LVU42
+	.loc 1 55 14 is_stmt 0 view .LVU43
+	lds r24,twi_buf
+	lds r25,twi_buf+1
+	.loc 1 55 26 view .LVU44
+	lds r30,twi_buf_ptr.1649
+	ldi r18,lo8(1)
+	add r18,r30
+	sts twi_buf_ptr.1649,r18
+	.loc 1 55 14 view .LVU45
+	add r30,r24
+	mov r31,r25
+	adc r31,__zero_reg__
+	.loc 1 55 32 view .LVU46
+	lds r24,187
+	.loc 1 55 30 view .LVU47
+	st Z,r24
+	rjmp .L10
+.L9:
+	.loc 1 64 7 is_stmt 1 view .LVU48
+	.loc 1 64 14 is_stmt 0 view .LVU49
+	lds r30,twi_buf_ptr.1649
+	lds r24,twi_buf
+	lds r25,twi_buf+1
+	add r30,r24
+	mov r31,r25
+	adc r31,__zero_reg__
+	.loc 1 64 30 view .LVU50
+	lds r24,187
+	.loc 1 64 28 view .LVU51
+	st Z,r24
+	rjmp .L32
+.L2:
+	.loc 1 68 7 is_stmt 1 view .LVU52
+	.loc 1 68 12 is_stmt 0 view .LVU53
+	ldi r24,lo8(-91)
+	rjmp .L30
+	__gcc_isr 0,r18
+	.cfi_endproc
+.LFE6:
+	.size	__vector_26, .-__vector_26
+.global	twi_start_wr
+	.type	twi_start_wr, @function
+twi_start_wr:
+.LVL0:
+.LFB8:
+	.loc 1 92 76 is_stmt 1 view -0
+	.cfi_startproc
+/* prologue: function */
+/* frame size = 0 */
+/* stack size = 0 */
+.L__stack_usage = 0
+	.loc 1 93 3 view .LVU55
+	.loc 1 93 31 is_stmt 0 view .LVU56
+	lsl r24
+.LVL1:
+	.loc 1 93 16 view .LVU57
+	sts twi_bus_addr,r24
+	.loc 1 94 3 is_stmt 1 view .LVU58
+	.loc 1 94 11 is_stmt 0 view .LVU59
+	sts twi_buf+1,r23
+	sts twi_buf,r22
+	.loc 1 95 3 is_stmt 1 view .LVU60
+	.loc 1 95 16 is_stmt 0 view .LVU61
+	sts twi_msg_size,r20
+	.loc 1 96 3 is_stmt 1 view .LVU62
+	.loc 1 96 17 is_stmt 0 view .LVU63
+	ldi r24,lo8(1)
+	sts twi_send_stop,r24
+	.loc 1 97 3 is_stmt 1 view .LVU64
+	.loc 1 97 8 is_stmt 0 view .LVU65
+	ldi r24,lo8(-91)
+	sts 188,r24
+	.loc 1 98 3 is_stmt 1 view .LVU66
+.LBB4:
+.LBI4:
+	.loc 1 84 16 view .LVU67
+.LBB5:
+	.loc 1 85 3 view .LVU68
+.L34:
+	.loc 1 85 31 view .LVU69
+	.loc 1 85 8 view .LVU70
+	.loc 1 85 9 is_stmt 0 view .LVU71
+	lds r24,188
+	.loc 1 85 8 view .LVU72
+	sbrc r24,0
+	rjmp .L34
+	.loc 1 86 3 is_stmt 1 view .LVU73
+.LBE5:
+.LBE4:
+	.loc 1 99 1 is_stmt 0 view .LVU74
+	ldi r24,lo8(1)
+/* epilogue start */
+	jmp safe_ret
+	.cfi_endproc
+.LFE8:
+	.size	twi_start_wr, .-twi_start_wr
+.global	twi_start_wr_no_stop
+	.type	twi_start_wr_no_stop, @function
+twi_start_wr_no_stop:
+.LVL2:
+.LFB9:
+	.loc 1 101 84 is_stmt 1 view -0
+	.cfi_startproc
+/* prologue: function */
+/* frame size = 0 */
+/* stack size = 0 */
+.L__stack_usage = 0
+	.loc 1 102 3 view .LVU76
+	.loc 1 102 31 is_stmt 0 view .LVU77
+	lsl r24
+.LVL3:
+	.loc 1 102 16 view .LVU78
+	sts twi_bus_addr,r24
+	.loc 1 103 3 is_stmt 1 view .LVU79
+	.loc 1 103 11 is_stmt 0 view .LVU80
+	sts twi_buf+1,r23
+	sts twi_buf,r22
+	.loc 1 104 3 is_stmt 1 view .LVU81
+	.loc 1 104 16 is_stmt 0 view .LVU82
+	sts twi_msg_size,r20
+	.loc 1 105 3 is_stmt 1 view .LVU83
+	.loc 1 105 17 is_stmt 0 view .LVU84
+	sts twi_send_stop,__zero_reg__
+	.loc 1 106 3 is_stmt 1 view .LVU85
+	.loc 1 106 8 is_stmt 0 view .LVU86
+	ldi r24,lo8(-91)
+	sts 188,r24
+	.loc 1 107 3 is_stmt 1 view .LVU87
+.LBB8:
+.LBI8:
+	.loc 1 84 16 view .LVU88
+.LBB9:
+	.loc 1 85 3 view .LVU89
+.L37:
+	.loc 1 85 31 view .LVU90
+	.loc 1 85 8 view .LVU91
+	.loc 1 85 9 is_stmt 0 view .LVU92
+	lds r24,188
+	.loc 1 85 8 view .LVU93
+	sbrc r24,0
+	rjmp .L37
+	.loc 1 86 3 is_stmt 1 view .LVU94
+.LBE9:
+.LBE8:
+	.loc 1 108 1 is_stmt 0 view .LVU95
+	ldi r24,lo8(1)
+/* epilogue start */
+	jmp safe_ret
+	.cfi_endproc
+.LFE9:
+	.size	twi_start_wr_no_stop, .-twi_start_wr_no_stop
+.global	twi_start_rd
+	.type	twi_start_rd, @function
+twi_start_rd:
+.LVL4:
+.LFB10:
+	.loc 1 114 76 is_stmt 1 view -0
+	.cfi_startproc
+/* prologue: function */
+/* frame size = 0 */
+/* stack size = 0 */
+.L__stack_usage = 0
+	.loc 1 115 3 view .LVU97
+	.loc 1 115 27 is_stmt 0 view .LVU98
+	lsl r24
+.LVL5:
+	.loc 1 115 31 view .LVU99
+	ori r24,lo8(1)
+	.loc 1 115 16 view .LVU100
+	sts twi_bus_addr,r24
+	.loc 1 116 3 is_stmt 1 view .LVU101
+	.loc 1 116 11 is_stmt 0 view .LVU102
+	sts twi_buf+1,r23
+	sts twi_buf,r22
+	.loc 1 117 3 is_stmt 1 view .LVU103
+	.loc 1 117 16 is_stmt 0 view .LVU104
+	sts twi_msg_size,r20
+	.loc 1 118 3 is_stmt 1 view .LVU105
+	.loc 1 118 17 is_stmt 0 view .LVU106
+	ldi r24,lo8(1)
+	sts twi_send_stop,r24
+	.loc 1 119 3 is_stmt 1 view .LVU107
+	.loc 1 119 8 is_stmt 0 view .LVU108
+	ldi r24,lo8(-91)
+	sts 188,r24
+	.loc 1 120 3 is_stmt 1 view .LVU109
+.LBB12:
+.LBI12:
+	.loc 1 84 16 view .LVU110
+.LBB13:
+	.loc 1 85 3 view .LVU111
+.L40:
+	.loc 1 85 31 view .LVU112
+	.loc 1 85 8 view .LVU113
+	.loc 1 85 9 is_stmt 0 view .LVU114
+	lds r24,188
+	.loc 1 85 8 view .LVU115
+	sbrc r24,0
+	rjmp .L40
+	.loc 1 86 3 is_stmt 1 view .LVU116
+.LBE13:
+.LBE12:
+	.loc 1 121 1 is_stmt 0 view .LVU117
+	ldi r24,lo8(1)
+/* epilogue start */
+	jmp safe_ret
+	.cfi_endproc
+.LFE10:
+	.size	twi_start_rd, .-twi_start_rd
+.global	twi_init
+	.type	twi_init, @function
+twi_init:
+.LFB11:
+	.loc 1 130 16 is_stmt 1 view -0
+	.cfi_startproc
+/* prologue: function */
+/* frame size = 0 */
+/* stack size = 0 */
+.L__stack_usage = 0
+	.loc 1 131 3 view .LVU119
+	.loc 1 131 8 is_stmt 0 view .LVU120
+	ldi r24,lo8(-1)
+	sts 187,r24
+	.loc 1 132 3 is_stmt 1 view .LVU121
+	.loc 1 132 8 is_stmt 0 view .LVU122
+	ldi r24,lo8(4)
+	sts 188,r24
+	.loc 1 133 3 is_stmt 1 view .LVU123
+	.loc 1 133 8 is_stmt 0 view .LVU124
+	ldi r30,lo8(-71)
+	ldi r31,0
+	ld r24,Z
+	andi r24,lo8(-4)
+	st Z,r24
+	.loc 1 134 3 is_stmt 1 view .LVU125
+	.loc 1 134 8 is_stmt 0 view .LVU126
+	ldi r24,lo8(42)
+	sts 184,r24
+/* epilogue start */
+	.loc 1 135 1 view .LVU127
+	jmp safe_ret
+	.cfi_endproc
+.LFE11:
+	.size	twi_init, .-twi_init
+	.local	twi_buf_ptr.1649
+	.comm	twi_buf_ptr.1649,1,1
+	.comm	twi_send_stop,1,1
+	.comm	twi_state,1,1
+	.comm	twi_bus_addr,1,1
+	.comm	twi_msg_size,1,1
+	.comm	twi_buf,2,1
+.Letext0:
+	.file 2 "/usr/local/Cellar/avr-gcc/9.3.0/avr/include/stdint.h"
+	.section	.debug_info,"",@progbits
+.Ldebug_info0:
+	.long	0x26d
+	.word	0x2
+	.long	.Ldebug_abbrev0
+	.byte	0x4
+	.uleb128 0x1
+	.long	.LASF20
+	.byte	0xc
+	.long	.LASF21
+	.long	.LASF22
+	.long	.Ltext0
+	.long	.Letext0
+	.long	.Ldebug_line0
+	.uleb128 0x2
+	.byte	0x1
+	.byte	0x6
+	.long	.LASF0
+	.uleb128 0x3
+	.long	.LASF2
+	.byte	0x2
+	.byte	0x7e
+	.byte	0x16
+	.long	0x3d
+	.uleb128 0x4
+	.long	0x2c
+	.uleb128 0x2
+	.byte	0x1
+	.byte	0x8
+	.long	.LASF1
+	.uleb128 0x5
+	.byte	0x2
+	.byte	0x5
+	.string	"int"
+	.uleb128 0x3
+	.long	.LASF3
+	.byte	0x2
+	.byte	0x80
+	.byte	0x16
+	.long	0x57
+	.uleb128 0x2
+	.byte	0x2
+	.byte	0x7
+	.long	.LASF4
+	.uleb128 0x2
+	.byte	0x4
+	.byte	0x5
+	.long	.LASF5
+	.uleb128 0x2
+	.byte	0x4
+	.byte	0x7
+	.long	.LASF6
+	.uleb128 0x2
+	.byte	0x8
+	.byte	0x5
+	.long	.LASF7
+	.uleb128 0x2
+	.byte	0x8
+	.byte	0x7
+	.long	.LASF8
+	.uleb128 0x6
+	.long	.LASF9
+	.byte	0x1
+	.byte	0x16
+	.byte	0x13
+	.long	0x8d
+	.byte	0x1
+	.byte	0x5
+	.byte	0x3
+	.long	twi_buf
+	.uleb128 0x7
+	.byte	0x2
+	.long	0x38
+	.uleb128 0x6
+	.long	.LASF10
+	.byte	0x1
+	.byte	0x17
+	.byte	0x12
+	.long	0x38
+	.byte	0x1
+	.byte	0x5
+	.byte	0x3
+	.long	twi_msg_size
+	.uleb128 0x6
+	.long	.LASF11
+	.byte	0x1
+	.byte	0x18
+	.byte	0x12
+	.long	0x38
+	.byte	0x1
+	.byte	0x5
+	.byte	0x3
+	.long	twi_bus_addr
+	.uleb128 0x6
+	.long	.LASF12
+	.byte	0x1
+	.byte	0x19
+	.byte	0x12
+	.long	0x38
+	.byte	0x1
+	.byte	0x5
+	.byte	0x3
+	.long	twi_state
+	.uleb128 0x6
+	.long	.LASF13
+	.byte	0x1
+	.byte	0x1a
+	.byte	0x12
+	.long	0x38
+	.byte	0x1
+	.byte	0x5
+	.byte	0x3
+	.long	twi_send_stop
+	.uleb128 0x8
+	.byte	0x1
+	.long	.LASF23
+	.byte	0x1
+	.byte	0x82
+	.byte	0x6
+	.long	.LFB11
+	.long	.LFE11
+	.byte	0x3
+	.byte	0x92
+	.uleb128 0x20
+	.sleb128 2
+	.byte	0x1
+	.uleb128 0x9
+	.byte	0x1
+	.long	.LASF16
+	.byte	0x1
+	.byte	0x72
+	.byte	0x9
+	.byte	0x1
+	.long	0x2c
+	.long	.LFB10
+	.long	.LFE10
+	.byte	0x3
+	.byte	0x92
+	.uleb128 0x20
+	.sleb128 2
+	.byte	0x1
+	.long	0x15f
+	.uleb128 0xa
+	.long	.LASF18
+	.byte	0x1
+	.byte	0x72
+	.byte	0x1e
+	.long	0x2c
+	.long	.LLST3
+	.long	.LVUS3
+	.uleb128 0xb
+	.long	.LASF14
+	.byte	0x1
+	.byte	0x72
+	.byte	0x31
+	.long	0x15f
+	.byte	0x6
+	.byte	0x66
+	.byte	0x93
+	.uleb128 0x1
+	.byte	0x67
+	.byte	0x93
+	.uleb128 0x1
+	.uleb128 0xb
+	.long	.LASF15
+	.byte	0x1
+	.byte	0x72
+	.byte	0x43
+	.long	0x2c
+	.byte	0x1
+	.byte	0x64
+	.uleb128 0xc
+	.long	0x239
+	.long	.LBI12
+	.byte	.LVU110
+	.long	.LBB12
+	.long	.LBE12
+	.byte	0x1
+	.byte	0x78
+	.byte	0xa
+	.byte	0
+	.uleb128 0x7
+	.byte	0x2
+	.long	0x2c
+	.uleb128 0x9
+	.byte	0x1
+	.long	.LASF17
+	.byte	0x1
+	.byte	0x65
+	.byte	0x9
+	.byte	0x1
+	.long	0x2c
+	.long	.LFB9
+	.long	.LFE9
+	.byte	0x3
+	.byte	0x92
+	.uleb128 0x20
+	.sleb128 2
+	.byte	0x1
+	.long	0x1cf
+	.uleb128 0xa
+	.long	.LASF18
+	.byte	0x1
+	.byte	0x65
+	.byte	0x26
+	.long	0x2c
+	.long	.LLST2
+	.long	.LVUS2
+	.uleb128 0xb
+	.long	.LASF14
+	.byte	0x1
+	.byte	0x65
+	.byte	0x39
+	.long	0x15f
+	.byte	0x6
+	.byte	0x66
+	.byte	0x93
+	.uleb128 0x1
+	.byte	0x67
+	.byte	0x93
+	.uleb128 0x1
+	.uleb128 0xb
+	.long	.LASF15
+	.byte	0x1
+	.byte	0x65
+	.byte	0x4b
+	.long	0x2c
+	.byte	0x1
+	.byte	0x64
+	.uleb128 0xc
+	.long	0x239
+	.long	.LBI8
+	.byte	.LVU88
+	.long	.LBB8
+	.long	.LBE8
+	.byte	0x1
+	.byte	0x6b
+	.byte	0xa
+	.byte	0
+	.uleb128 0x9
+	.byte	0x1
+	.long	.LASF19
+	.byte	0x1
+	.byte	0x5c
+	.byte	0x9
+	.byte	0x1
+	.long	0x2c
+	.long	.LFB8
+	.long	.LFE8
+	.byte	0x3
+	.byte	0x92
+	.uleb128 0x20
+	.sleb128 2
+	.byte	0x1
+	.long	0x239
+	.uleb128 0xa
+	.long	.LASF18
+	.byte	0x1
+	.byte	0x5c
+	.byte	0x1e
+	.long	0x2c
+	.long	.LLST1
+	.long	.LVUS1
+	.uleb128 0xb
+	.long	.LASF14
+	.byte	0x1
+	.byte	0x5c
+	.byte	0x31
+	.long	0x15f
+	.byte	0x6
+	.byte	0x66
+	.byte	0x93
+	.uleb128 0x1
+	.byte	0x67
+	.byte	0x93
+	.uleb128 0x1
+	.uleb128 0xb
+	.long	.LASF15
+	.byte	0x1
+	.byte	0x5c
+	.byte	0x43
+	.long	0x2c
+	.byte	0x1
+	.byte	0x64
+	.uleb128 0xc
+	.long	0x239
+	.long	.LBI4
+	.byte	.LVU67
+	.long	.LBB4
+	.long	.LBE4
+	.byte	0x1
+	.byte	0x62
+	.byte	0xa
+	.byte	0
+	.uleb128 0xd
+	.long	.LASF24
+	.byte	0x1
+	.byte	0x54
+	.byte	0x10
+	.long	0x2c
+	.byte	0x1
+	.uleb128 0xe
+	.byte	0x1
+	.long	.LASF25
+	.byte	0x1
+	.byte	0x20
+	.byte	0x1
+	.byte	0x1
+	.long	.LFB6
+	.long	.LFE6
+	.long	.LLST0
+	.byte	0x1
+	.uleb128 0xf
+	.long	.LASF26
+	.byte	0x1
+	.byte	0x21
+	.byte	0x12
+	.long	0x2c
+	.byte	0x5
+	.byte	0x3
+	.long	twi_buf_ptr.1649
+	.byte	0
+	.byte	0
+	.section	.debug_abbrev,"",@progbits
+.Ldebug_abbrev0:
+	.uleb128 0x1
+	.uleb128 0x11
+	.byte	0x1
+	.uleb128 0x25
+	.uleb128 0xe
+	.uleb128 0x13
+	.uleb128 0xb
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x1b
+	.uleb128 0xe
+	.uleb128 0x11
+	.uleb128 0x1
+	.uleb128 0x12
+	.uleb128 0x1
+	.uleb128 0x10
+	.uleb128 0x6
+	.byte	0
+	.byte	0
+	.uleb128 0x2
+	.uleb128 0x24
+	.byte	0
+	.uleb128 0xb
+	.uleb128 0xb
+	.uleb128 0x3e
+	.uleb128 0xb
+	.uleb128 0x3
+	.uleb128 0xe
+	.byte	0
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0x16
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x39
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0x4
+	.uleb128 0x35
+	.byte	0
+	.uleb128 0x49
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0x5
+	.uleb128 0x24
+	.byte	0
+	.uleb128 0xb
+	.uleb128 0xb
+	.uleb128 0x3e
+	.uleb128 0xb
+	.uleb128 0x3
+	.uleb128 0x8
+	.byte	0
+	.byte	0
+	.uleb128 0x6
+	.uleb128 0x34
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x39
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x3f
+	.uleb128 0xc
+	.uleb128 0x2
+	.uleb128 0xa
+	.byte	0
+	.byte	0
+	.uleb128 0x7
+	.uleb128 0xf
+	.byte	0
+	.uleb128 0xb
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0x8
+	.uleb128 0x2e
+	.byte	0
+	.uleb128 0x3f
+	.uleb128 0xc
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x39
+	.uleb128 0xb
+	.uleb128 0x11
+	.uleb128 0x1
+	.uleb128 0x12
+	.uleb128 0x1
+	.uleb128 0x40
+	.uleb128 0xa
+	.uleb128 0x2117
+	.uleb128 0xc
+	.byte	0
+	.byte	0
+	.uleb128 0x9
+	.uleb128 0x2e
+	.byte	0x1
+	.uleb128 0x3f
+	.uleb128 0xc
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x39
+	.uleb128 0xb
+	.uleb128 0x27
+	.uleb128 0xc
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x11
+	.uleb128 0x1
+	.uleb128 0x12
+	.uleb128 0x1
+	.uleb128 0x40
+	.uleb128 0xa
+	.uleb128 0x2117
+	.uleb128 0xc
+	.uleb128 0x1
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0xa
+	.uleb128 0x5
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x39
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x2
+	.uleb128 0x6
+	.uleb128 0x2137
+	.uleb128 0x6
+	.byte	0
+	.byte	0
+	.uleb128 0xb
+	.uleb128 0x5
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x39
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x2
+	.uleb128 0xa
+	.byte	0
+	.byte	0
+	.uleb128 0xc
+	.uleb128 0x1d
+	.byte	0
+	.uleb128 0x31
+	.uleb128 0x13
+	.uleb128 0x52
+	.uleb128 0x1
+	.uleb128 0x2138
+	.uleb128 0xb
+	.uleb128 0x11
+	.uleb128 0x1
+	.uleb128 0x12
+	.uleb128 0x1
+	.uleb128 0x58
+	.uleb128 0xb
+	.uleb128 0x59
+	.uleb128 0xb
+	.uleb128 0x57
+	.uleb128 0xb
+	.byte	0
+	.byte	0
+	.uleb128 0xd
+	.uleb128 0x2e
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x39
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x20
+	.uleb128 0xb
+	.byte	0
+	.byte	0
+	.uleb128 0xe
+	.uleb128 0x2e
+	.byte	0x1
+	.uleb128 0x3f
+	.uleb128 0xc
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x39
+	.uleb128 0xb
+	.uleb128 0x27
+	.uleb128 0xc
+	.uleb128 0x11
+	.uleb128 0x1
+	.uleb128 0x12
+	.uleb128 0x1
+	.uleb128 0x40
+	.uleb128 0x6
+	.uleb128 0x2117
+	.uleb128 0xc
+	.byte	0
+	.byte	0
+	.uleb128 0xf
+	.uleb128 0x34
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x39
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x2
+	.uleb128 0xa
+	.byte	0
+	.byte	0
+	.byte	0
+	.section	.debug_loc,"",@progbits
+.Ldebug_loc0:
+.LVUS3:
+	.uleb128 0
+	.uleb128 .LVU99
+	.uleb128 .LVU99
+	.uleb128 0
+.LLST3:
+	.long	.LVL4-.Ltext0
+	.long	.LVL5-.Ltext0
+	.word	0x1
+	.byte	0x68
+	.long	.LVL5-.Ltext0
+	.long	.LFE10-.Ltext0
+	.word	0x4
+	.byte	0xf3
+	.uleb128 0x1
+	.byte	0x68
+	.byte	0x9f
+	.long	0
+	.long	0
+.LVUS2:
+	.uleb128 0
+	.uleb128 .LVU78
+	.uleb128 .LVU78
+	.uleb128 0
+.LLST2:
+	.long	.LVL2-.Ltext0
+	.long	.LVL3-.Ltext0
+	.word	0x1
+	.byte	0x68
+	.long	.LVL3-.Ltext0
+	.long	.LFE9-.Ltext0
+	.word	0x4
+	.byte	0xf3
+	.uleb128 0x1
+	.byte	0x68
+	.byte	0x9f
+	.long	0
+	.long	0
+.LVUS1:
+	.uleb128 0
+	.uleb128 .LVU57
+	.uleb128 .LVU57
+	.uleb128 0
+.LLST1:
+	.long	.LVL0-.Ltext0
+	.long	.LVL1-.Ltext0
+	.word	0x1
+	.byte	0x68
+	.long	.LVL1-.Ltext0
+	.long	.LFE8-.Ltext0
+	.word	0x4
+	.byte	0xf3
+	.uleb128 0x1
+	.byte	0x68
+	.byte	0x9f
+	.long	0
+	.long	0
+.LLST0:
+	.long	.LFB6-.Ltext0
+	.long	.LCFI0-.Ltext0
+	.word	0x3
+	.byte	0x92
+	.uleb128 0x20
+	.sleb128 2
+	.long	.LCFI0-.Ltext0
+	.long	.LCFI1-.Ltext0
+	.word	0x3
+	.byte	0x92
+	.uleb128 0x20
+	.sleb128 3
+	.long	.LCFI1-.Ltext0
+	.long	.LCFI2-.Ltext0
+	.word	0x3
+	.byte	0x92
+	.uleb128 0x20
+	.sleb128 4
+	.long	.LCFI2-.Ltext0
+	.long	.LCFI3-.Ltext0
+	.word	0x3
+	.byte	0x92
+	.uleb128 0x20
+	.sleb128 5
+	.long	.LCFI3-.Ltext0
+	.long	.LFE6-.Ltext0
+	.word	0x3
+	.byte	0x92
+	.uleb128 0x20
+	.sleb128 6
+	.long	0
+	.long	0
+	.section	.debug_aranges,"",@progbits
+	.long	0x1c
+	.word	0x2
+	.long	.Ldebug_info0
+	.byte	0x4
+	.byte	0
+	.word	0
+	.word	0
+	.long	.Ltext0
+	.long	.Letext0-.Ltext0
+	.long	0
+	.long	0
+	.section	.debug_line,"",@progbits
+.Ldebug_line0:
+	.section	.debug_str,"MS",@progbits,1
+.LASF20:
+	.string	"GNU C17 9.3.0 -mn-flash=2 -mno-skip-bug -mmcu=avr51 -gdwarf-2 -Os -fno-strict-aliasing"
+.LASF23:
+	.string	"twi_init"
+.LASF9:
+	.string	"twi_buf"
+.LASF14:
+	.string	"twi_data"
+.LASF19:
+	.string	"twi_start_wr"
+.LASF22:
+	.string	"/Users/mammar/Dropbox/3 Resources/smv-code/acsac/final/apps/eval-sensor"
+.LASF1:
+	.string	"unsigned char"
+.LASF18:
+	.string	"twi_addr"
+.LASF6:
+	.string	"long unsigned int"
+.LASF13:
+	.string	"twi_send_stop"
+.LASF15:
+	.string	"byte_cnt"
+.LASF10:
+	.string	"twi_msg_size"
+.LASF11:
+	.string	"twi_bus_addr"
+.LASF24:
+	.string	"busy_wait"
+.LASF4:
+	.string	"unsigned int"
+.LASF8:
+	.string	"long long unsigned int"
+.LASF2:
+	.string	"uint8_t"
+.LASF16:
+	.string	"twi_start_rd"
+.LASF7:
+	.string	"long long int"
+.LASF21:
+	.string	"twi_master.c"
+.LASF25:
+	.string	"__vector_26"
+.LASF12:
+	.string	"twi_state"
+.LASF3:
+	.string	"uint16_t"
+.LASF5:
+	.string	"long int"
+.LASF0:
+	.string	"signed char"
+.LASF26:
+	.string	"twi_buf_ptr"
+.LASF17:
+	.string	"twi_start_wr_no_stop"
+	.ident	"GCC: (Homebrew AVR GCC 9.3.0) 9.3.0"
+.global __do_clear_bss
